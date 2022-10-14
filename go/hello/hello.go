@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"log"
 
 	"example/greetings"
 
@@ -9,8 +10,14 @@ import (
 )
 
 func main() {
+	log.SetPrefix("greetings:")
+	log.SetFlags(0)
+
 	fmt.Println("Hello world")
 	fmt.Println(quote.Go())
-	message := greetings.Hello("xsr")
+	message, err := greetings.Hello("xsr")
+	if err != nil {
+		log.Fatal(err)
+	}
 	fmt.Println(message)
 }
